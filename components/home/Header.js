@@ -8,13 +8,14 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import logo from "../../assets/instagram-header-white.png";
+import StyleSheetValidation from "react-native/Libraries/StyleSheet/StyleSheetValidation";
 
 const styles = StyleSheet.create({
   container: {
     justifyContent: "space-between",
     alignItems: "center",
     flexDirection: "row",
-    marginHorizontal: 20,
+    marginHorizontal: 15,
   },
 
   iconsContainer: {
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
 
   icons: {
     color: "white",
+    marginLeft: 20,
   },
 
   logo: {
@@ -30,7 +32,27 @@ const styles = StyleSheet.create({
     height: 50,
     resizeMode: "contain",
   },
+
+  unreadBadge: {
+    backgroundColor: "#FF3250",
+    position: "absolute",
+    left: 32,
+    bottom: 16,
+    width: 14,
+    height: 14,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+
+  unreadCount: {
+    color: "#FFF",
+    fontSize: 10,
+    fontWeight: "bold",
+  },
 });
+
+const ICON_SIZE = 22;
 
 const Header = () => {
   return (
@@ -40,13 +62,33 @@ const Header = () => {
       </TouchableOpacity>
 
       <View style={styles.iconsContainer}>
-        <FontAwesomeIcon icon={faSquarePlus} style={styles.icons} />
-        <FontAwesomeIcon icon={faHeart} style={styles.icons} />
-        <FontAwesomeIcon icon={faPaperPlane} style={styles.icons} />
+        <TouchableOpacity>
+          <FontAwesomeIcon
+            icon={faSquarePlus}
+            size={ICON_SIZE}
+            style={styles.icons}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesomeIcon
+            icon={faHeart}
+            size={ICON_SIZE}
+            style={styles.icons}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <FontAwesomeIcon
+            icon={faPaperPlane}
+            size={ICON_SIZE}
+            style={styles.icons}
+          />
+          <View style={styles.unreadBadge}>
+            <Text style={styles.unreadCount}>11</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
 };
-// <FontAwesomeIcon icon={faSquarePlus} />
 
 export default Header;
