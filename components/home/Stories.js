@@ -1,13 +1,14 @@
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 
-// data
+// Data
 import USERS from "../../data/users";
 
 const styles = StyleSheet.create({
   container: {
     marginTop: 5,
     marginBottom: 15,
+    marginHorizontal: 8,
   },
 
   storyContainer: {

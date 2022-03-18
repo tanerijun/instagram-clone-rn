@@ -1,10 +1,13 @@
-import { SafeAreaView, StyleSheet, Text } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text } from "react-native";
 import Constants from "expo-constants";
 
 import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
 import Separator from "../components/home/Separator";
 import Post from "../components/home/Post";
+
+// Data
+import POSTS from "../data/posts";
 
 const styles = StyleSheet.create({
   container: {
@@ -20,7 +23,11 @@ const HomeScreen = () => {
       <Header />
       <Stories />
       <Separator />
-      <Post />
+      <ScrollView>
+        {POSTS.map((post) => (
+          <Post post={post} key={post.id} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 };
