@@ -8,7 +8,6 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import logo from "../../assets/instagram-header-white.png";
-import StyleSheetValidation from "react-native/Libraries/StyleSheet/StyleSheetValidation";
 
 const styles = StyleSheet.create({
   container: {

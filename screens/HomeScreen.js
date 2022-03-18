@@ -2,6 +2,7 @@ import { SafeAreaView, StyleSheet, Text } from "react-native";
 import Constants from "expo-constants";
 
 import Header from "../components/home/Header";
+import Stories from "../components/home/Stories";
 
 const styles = StyleSheet.create({
   container: {
@@ -15,6 +16,7 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
+      <Stories />
     </SafeAreaView>
   );
 };
