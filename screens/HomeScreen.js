@@ -3,6 +3,8 @@ import Constants from "expo-constants";
 
 import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
+import Separator from "../components/home/Separator";
+import Post from "../components/home/Post";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,6 +19,8 @@ const HomeScreen = () => {
     <SafeAreaView style={styles.container}>
       <Header />
       <Stories />
+      <Separator />
+      <Post />
     </SafeAreaView>
   );
 };

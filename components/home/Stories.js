@@ -7,7 +7,7 @@ import USERS from "../../data/users";
 const styles = StyleSheet.create({
   container: {
     marginTop: 5,
-    marginBottom: 50,
+    marginBottom: 15,
   },
 
   storyContainer: {
