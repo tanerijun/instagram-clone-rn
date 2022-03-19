@@ -7,7 +7,8 @@ const POSTS = [
     profile_picture: USERS[2].image,
     likes: 1020,
     caption: "My cat doing it's things",
-    imageUrl: "https://i.imgur.com/R4JvEI7.jpg",
+    imageUrl:
+      "https://filmdaily.co/wp-content/uploads/2021/04/cat-dancing-lede.jpg",
     comments: [
       {
         user: "perlpinkton",
@@ -25,8 +26,7 @@ const POSTS = [
     profile_picture: USERS[2].image,
     likes: 1543,
     caption: "Finally out of gas",
-    imageUrl:
-      "https://resources.stuff.co.nz/content/dam/images/2/3/f/e/y/0/image.related.StuffLandscapeSixteenByNine.710x400.23fewh.png/1635391763743.jpg?format=pjpg&optimize=medium",
+    imageUrl: "https://wallpaperaccess.com/full/3359156.jpg",
     comments: [
       {
         user: "perlpinkton",

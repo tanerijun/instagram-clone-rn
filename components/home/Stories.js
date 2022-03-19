@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
   container: {
     marginTop: 5,
     marginBottom: 15,
-    marginHorizontal: 8,
   },
 
   storyContainer: {

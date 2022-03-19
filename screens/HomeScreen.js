@@ -21,9 +21,9 @@ const HomeScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Header />
-      <Stories />
-      <Separator />
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <Stories />
+        <Separator />
         {POSTS.map((post) => (
           <Post post={post} key={post.id} />
         ))}
