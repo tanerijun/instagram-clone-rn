@@ -1,10 +1,6 @@
 import { Image, StyleSheet, Text, View } from "react-native";
 
 const styles = StyleSheet.create({
-  container: {
-    marginBottom: 30,
-  },
-
   headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -23,17 +19,6 @@ const styles = StyleSheet.create({
     height: 35,
     borderRadius: 50,
     marginRight: 10,
-  },
-
-  imageContainer: {
-    marginVertical: 8,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  image: {
-    width: "100%",
-    height: 350,
   },
 
   text: {
@@ -61,21 +46,4 @@ const PostHeader = ({ user, profilePicture }) => {
   );
 };
 
-const PostImage = ({ image }) => {
-  return (
-    <View style={styles.imageContainer}>
-      <Image source={{ uri: image }} style={styles.image} />
-    </View>
-  );
-};
-
-const Post = ({ post }) => {
-  return (
-    <View style={styles.container}>
-      <PostHeader user={post.user} profilePicture={post.profile_picture} />
-      <PostImage image={post.imageUrl} />
-    </View>
-  );
-};
-
-export default Post;
+export default PostHeader;

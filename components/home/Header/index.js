@@ -7,7 +7,7 @@ import {
   faHeart,
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
-import logo from "../../assets/instagram-header-white.png";
+import logo from "../../../assets/instagram-header-white.png";
 
 const styles = StyleSheet.create({
   container: {
@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
   },
 
   icons: {
-    color: "white",
-    marginLeft: 20,
+    color: "#FFF",
+    marginLeft: 25,
   },
 
   logo: {
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   unreadBadge: {
     backgroundColor: "#FF3250",
     position: "absolute",
-    left: 32,
+    left: 37,
     bottom: 16,
     width: 14,
     height: 14,

@@ -6,7 +6,9 @@ const POSTS = [
     user: USERS[2].user,
     profile_picture: USERS[2].image,
     likes: 1020,
-    caption: "My cat doing it's things",
+    caption: `My cat doing it's things
+Dancing like he is the only on left in this world
+Or is he trying to intimidate the black cat?`,
     imageUrl:
       "https://filmdaily.co/wp-content/uploads/2021/04/cat-dancing-lede.jpg",
     comments: [
@@ -25,7 +27,12 @@ const POSTS = [
     user: USERS[2].user,
     profile_picture: USERS[2].image,
     likes: 1543,
-    caption: "Finally out of gas",
+    caption: `.
+.
+.
+.
+.
+Finally out of gas`,
     imageUrl: "https://wallpaperaccess.com/full/3359156.jpg",
     comments: [
       {
@@ -74,7 +81,8 @@ const POSTS = [
     user: USERS[6].user,
     profile_picture: USERS[6].image,
     likes: 2001,
-    caption: "Gorgeus view in Taroko Gorge, Taiwan",
+    caption:
+      "Gorgeus view in Taroko Gorge, Taiwan #travel #asia #taiwan samplesamplesamplesamplesamplesamplesample",
     imageUrl:
       "https://assets.bucketlistly.blog/sites/5adf778b6eabcc00190b75b1/content_entry5adf77af6eabcc00190b75b6/5e29c5d54e4b61000cac3582/files/taroko-gorge-hualien-backpacking-itinerary-taiwan-main-image-op.jpg",
     comments: [
