@@ -27,12 +27,7 @@ Or is he trying to intimidate the black cat?`,
     user: USERS[2].user,
     profile_picture: USERS[2].image,
     likes: 1543,
-    caption: `.
-.
-.
-.
-.
-Finally out of gas`,
+    caption: ".\n.\n.\n.\n.\nFinally out of gas",
     imageUrl: "https://wallpaperaccess.com/full/3359156.jpg",
     comments: [
       {

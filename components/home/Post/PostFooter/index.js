@@ -73,6 +73,9 @@ const Likes = ({ likes }) => (
 const Caption = ({ user, caption }) => {
   const [more, setMore] = useState(false);
 
+  const checkNewline = (s) =>
+    s.match(/\n/g) ? caption.match(/\n/g).length : 0;
+
   return (
     <View style={styles.captionContainer}>
       <Text>
@@ -80,10 +83,17 @@ const Caption = ({ user, caption }) => {
           {user.toLowerCase() + " "}
         </Text>
 
-        {/* render part of the caption with a button to read more if the caption is too long */}
-        {caption.length > 50 && !more ? (
+        {/* render part of the caption with a button to read more if the caption is too long
+            or if there are more than 2 newlines in the caption 
+        */}
+
+        {(caption.length > 50 || checkNewline(caption) > 2) && !more ? (
           <>
-            <Text style={styles.text}>{caption.slice(0, 50)}</Text>
+            <Text style={styles.text}>
+              {checkNewline(caption) > 2
+                ? caption.slice(0, caption.indexOf("\n", 2))
+                : caption.slice(0, 50)}
+            </Text>
             <Text style={styles.moreButton} onPress={() => setMore(!more)}>
               ... more
             </Text>
