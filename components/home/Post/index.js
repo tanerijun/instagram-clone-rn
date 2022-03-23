@@ -16,7 +16,7 @@ const Post = ({ post }) => {
     <View style={styles.container}>
       <PostHeader user={post.user} profilePicture={post.profile_picture} />
       <PostImage image={post.imageUrl} />
-      <PostFooter user={post.user} likes={post.likes} caption={post.caption} />
+      <PostFooter post={post} />
     </View>
   );
 };

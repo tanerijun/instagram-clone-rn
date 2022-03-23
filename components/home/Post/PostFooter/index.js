@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 // Assets
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -50,9 +50,13 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
 
-  moreButton: {
+  grayText: {
     fontSize: 14,
     color: "#A9A9A9",
+  },
+
+  viewCommentsContainer: {
+    marginTop: 5,
   },
 });
 
@@ -73,6 +77,7 @@ const Likes = ({ likes }) => (
 const Caption = ({ user, caption }) => {
   const [more, setMore] = useState(false);
 
+  // check how many newlines are there inside a string
   const checkNewline = (s) =>
     s.match(/\n/g) ? caption.match(/\n/g).length : 0;
 
@@ -94,7 +99,7 @@ const Caption = ({ user, caption }) => {
                 ? caption.slice(0, caption.indexOf("\n", 2))
                 : caption.slice(0, 50)}
             </Text>
-            <Text style={styles.moreButton} onPress={() => setMore(!more)}>
+            <Text style={styles.grayText} onPress={() => setMore(!more)}>
               ... more
             </Text>
           </>
@@ -106,7 +111,18 @@ const Caption = ({ user, caption }) => {
   );
 };
 
-const PostFooter = ({ user, likes, caption }) => {
+const ViewComments = ({ comments }) => (
+  <View style={styles.viewCommentsContainer}>
+    {comments.length > 0 ? (
+      <Text style={styles.grayText}>
+        View {comments.length > 1 ? "all" : ""} {comments.length + " "}
+        {comments.length > 1 ? "comments" : "comment"}
+      </Text>
+    ) : null}
+  </View>
+);
+
+const PostFooter = ({ post }) => {
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
@@ -119,8 +135,9 @@ const PostFooter = ({ user, likes, caption }) => {
           <Icon source={faBookmark} />
         </View>
       </View>
-      <Likes likes={likes} />
-      <Caption user={user} caption={caption} />
+      <Likes likes={post.likes} />
+      <Caption user={post.user} caption={post.caption} />
+      <ViewComments comments={post.comments} />
     </View>
   );
 };

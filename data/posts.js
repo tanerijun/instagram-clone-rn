@@ -95,6 +95,31 @@ Or is he trying to intimidate the black cat?`,
       },
     ],
   },
+  {
+    id: 5,
+    user: USERS[0].user,
+    profile_picture: USERS[0].image,
+    likes: 7101,
+    caption: "Our next project",
+    imageUrl:
+      "https://inlooxcdn.azureedge.net/var/corporate_site/storage/images/media/images/seo-page-project-management/hero-project-management-stockphoto-agile-standup-meeting-3840x979px/2157312-1-eng-GB/hero-project-management-stockphoto-agile-standup-meeting-3840x979px.jpg",
+    comments: [
+      {
+        user: "ben_gelsen",
+        comment: "Pumped!",
+      },
+    ],
+  },
+  {
+    id: 6,
+    user: USERS[5].user,
+    profile_picture: USERS[5].image,
+    likes: 101,
+    caption: "Never tasted something like this before",
+    imageUrl:
+      "https://purewows3.imgix.net/images/articles/2021_12/traditional-chinese-food-FB.jpg?auto=format,compress&cs=strip",
+    comments: [],
+  },
 ];
 
 export default POSTS;
