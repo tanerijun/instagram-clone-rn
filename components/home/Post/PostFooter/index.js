@@ -115,16 +115,23 @@ const Caption = ({ user, caption }) => {
   );
 };
 
-const ViewComments = ({ comments }) => (
-  <View style={styles.viewCommentsContainer}>
-    {comments.length > 0 ? (
-      <Text style={styles.grayText}>
-        View {comments.length > 1 ? "all" : ""} {comments.length + " "}
-        {comments.length > 1 ? "comments" : "comment"}
-      </Text>
-    ) : null}
-  </View>
-);
+const ViewComments = ({ comments }) => {
+  const [showComments, setShowComments] = useState(false);
+
+  return (
+    <View style={styles.viewCommentsContainer}>
+      {comments.length > 0 ? (
+        <Text style={styles.grayText} onPress={() => setShowComments(true)}>
+          View {comments.length > 1 ? "all" : ""} {comments.length + " "}
+          {comments.length > 1 ? "comments" : "comment"}
+        </Text>
+      ) : null}
+
+      {/* show comments when ViewComments is pressed */}
+      {showComments && <Comments comments={comments} />}
+    </View>
+  );
+};
 
 const Comments = ({ comments }) => (
   <>
@@ -154,7 +161,6 @@ const PostFooter = ({ post }) => {
       <Likes likes={post.likes} />
       <Caption user={post.user} caption={post.caption} />
       <ViewComments comments={post.comments} />
-      <Comments comments={post.comments} />
     </View>
   );
 };

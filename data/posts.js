@@ -87,7 +87,7 @@ Or is he trying to intimidate the black cat?`,
       },
       {
         user: "rolandcos",
-        comment: "Added to the my list",
+        comment: "Added to my travel list",
       },
       {
         user: "robertkim",
