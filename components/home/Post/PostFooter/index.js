@@ -58,6 +58,10 @@ const styles = StyleSheet.create({
   viewCommentsContainer: {
     marginTop: 5,
   },
+
+  commentContainer: {
+    marginTop: 5,
+  },
 });
 
 const ICON_SIZE = 22;
@@ -122,6 +126,18 @@ const ViewComments = ({ comments }) => (
   </View>
 );
 
+const Comments = ({ comments }) => (
+  <>
+    {comments.map((comment) => (
+      <View key={comment.id} style={styles.commentContainer}>
+        <Text style={styles.text}>
+          <Text style={styles.boldText}>{comment.user}</Text> {comment.comment}
+        </Text>
+      </View>
+    ))}
+  </>
+);
+
 const PostFooter = ({ post }) => {
   return (
     <View style={styles.container}>
@@ -138,6 +154,7 @@ const PostFooter = ({ post }) => {
       <Likes likes={post.likes} />
       <Caption user={post.user} caption={post.caption} />
       <ViewComments comments={post.comments} />
+      <Comments comments={post.comments} />
     </View>
   );
 };
