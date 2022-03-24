@@ -135,8 +135,8 @@ const ViewComments = ({ comments }) => {
 
 const Comments = ({ comments }) => (
   <>
-    {comments.map((comment) => (
-      <View key={comment.id} style={styles.commentContainer}>
+    {comments.map((comment, index) => (
+      <View key={index} style={styles.commentContainer}>
         <Text style={styles.text}>
           <Text style={styles.boldText}>{comment.user}</Text> {comment.comment}
         </Text>

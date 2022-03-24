@@ -5,6 +5,7 @@ import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
 import Separator from "../components/home/Separator";
 import Post from "../components/home/Post";
+import BottomTabs from "../components/home/BottomTabs";
 
 // Data
 import POSTS from "../data/posts";
@@ -28,6 +29,7 @@ const HomeScreen = () => {
           <Post post={post} key={post.id} />
         ))}
       </ScrollView>
+      <BottomTabs />
     </SafeAreaView>
   );
 };
