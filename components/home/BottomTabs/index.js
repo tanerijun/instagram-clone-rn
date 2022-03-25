@@ -14,7 +14,7 @@ import {
 
 const styles = StyleSheet.create({
   iconsContainer: {
-    marginHorizontal: 35,
+    marginHorizontal: 25,
     marginBottom: 5,
     flexDirection: "row",
     justifyContent: "space-between",
