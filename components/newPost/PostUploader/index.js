@@ -59,10 +59,16 @@ const styles = StyleSheet.create({
   },
 });
 
+const urlValidationRegex = /^(ftp|http|https):\/\/[^ "]+$/;
+
 const PostUploader = () => {
   const [thumbnailUrl, setThumbnailUrl] = useState(placeholderImage);
 
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm({
     mode: "onChange",
     reValidateMode: "onChange",
   });
@@ -74,9 +80,14 @@ const PostUploader = () => {
       <View style={styles.captionWithImageContainer}>
         <Image style={styles.image} source={thumbnailUrl} />
         <Controller
+          name="caption"
           control={control}
           rules={{
             required: "Caption required",
+            maxLength: {
+              value: 2200,
+              message: "Maximum character limit reached",
+            },
           }}
           render={({
             field: { onChange, onBlur, value },
@@ -102,16 +113,17 @@ const PostUploader = () => {
               )}
             </View>
           )}
-          name="caption"
         />
       </View>
 
       <Separator />
 
       <Controller
+        name="imageUrl"
         control={control}
         rules={{
           required: "Image URL required",
+          validate: (value) => urlValidationRegex.test(value) || "Invalid URL",
         }}
         render={({
           field: { onChange, onBlur, value },
@@ -133,10 +145,13 @@ const PostUploader = () => {
             {error && <Text style={styles.errorMessage}>{error.message}</Text>}
           </View>
         )}
-        name="imageUrl"
       />
 
-      <Button title="POST" onPress={handleSubmit(onSubmit)} />
+      <Button
+        title="POST"
+        onPress={handleSubmit(onSubmit)}
+        disabled={!isValid}
+      />
     </View>
   );
 };
