@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
+      <Header navigation={navigation} />
       <ScrollView showsVerticalScrollIndicator={false}>
         <Stories />
         <Separator />

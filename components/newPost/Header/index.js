@@ -21,10 +21,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const Header = () => {
+const Header = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <FontAwesomeIcon icon={faXmark} size={32} color={"#FFF"} />
       </TouchableOpacity>
 

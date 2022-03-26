@@ -1,4 +1,7 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  createStackNavigator,
+  TransitionPresets,
+} from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 
 // Screens
@@ -9,11 +12,15 @@ const Stack = createStackNavigator();
 
 const screenOptions = {
   headerShown: false,
+  ...TransitionPresets.SlideFromRightIOS,
 };
 
 const SignedInStack = () => (
-  <NavigationContainer>
-    <Stack.Navigator initialRouteName="Home" screenOptions={screenOptions}>
+  <NavigationContainer theme={{ colors: { background: "#000" } }}>
+    <Stack.Navigator
+      initialRouteName="HomeScreen"
+      screenOptions={screenOptions}
+    >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />
       <Stack.Screen name="NewPostScreen" component={NewPostScreen} />
     </Stack.Navigator>

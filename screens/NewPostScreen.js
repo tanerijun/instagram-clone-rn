@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const NewPostScreen = () => {
+const NewPostScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
-      <PostUploader />
+      <Header navigation={navigation} />
+      <PostUploader navigation={navigation} />
     </SafeAreaView>
   );
 };

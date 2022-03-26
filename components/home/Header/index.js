@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
 
 const ICON_SIZE = 22;
 
-const Header = () => {
+const Header = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <TouchableOpacity>
@@ -61,7 +61,7 @@ const Header = () => {
       </TouchableOpacity>
 
       <View style={styles.iconsContainer}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.push("NewPostScreen")}>
           <FontAwesomeIcon
             icon={faSquarePlus}
             size={ICON_SIZE}

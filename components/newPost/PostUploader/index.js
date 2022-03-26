@@ -4,6 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 import Separator from "../../home/Separator";
 
 import placeholderImage from "../../../assets/icon.png";
+import { NavigationContainer } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   image: {
@@ -61,7 +62,7 @@ const styles = StyleSheet.create({
 
 const urlValidationRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
-const PostUploader = () => {
+const PostUploader = ({ navigation }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState("");
 
   const {
@@ -74,7 +75,8 @@ const PostUploader = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(data);
+    console.log("Form submitted");
+    navigation.goBack();
   };
 
   return (
