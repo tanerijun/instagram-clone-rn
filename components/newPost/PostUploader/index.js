@@ -157,5 +157,3 @@ const PostUploader = () => {
 };
 
 export default PostUploader;
-
-// TODO: Add form validation
