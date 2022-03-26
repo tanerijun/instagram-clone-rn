@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
 const urlValidationRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
 const PostUploader = () => {
-  const [thumbnailUrl, setThumbnailUrl] = useState(placeholderImage);
+  const [thumbnailUrl, setThumbnailUrl] = useState("");
 
   const {
     handleSubmit,
@@ -73,12 +73,17 @@ const PostUploader = () => {
     reValidateMode: "onChange",
   });
 
-  const onSubmit = (data) => console.log(data);
+  const onSubmit = (data) => {
+    setThumbnailUrl(data.imageUrl);
+  };
 
   return (
     <View style={styles.parentContainer}>
       <View style={styles.captionWithImageContainer}>
-        <Image style={styles.image} source={thumbnailUrl} />
+        <Image
+          style={styles.image}
+          source={thumbnailUrl ? { uri: thumbnailUrl } : placeholderImage}
+        />
         <Controller
           name="caption"
           control={control}
