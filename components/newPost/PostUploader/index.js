@@ -74,7 +74,7 @@ const PostUploader = () => {
   });
 
   const onSubmit = (data) => {
-    setThumbnailUrl(data.imageUrl);
+    console.log(data);
   };
 
   return (
@@ -145,6 +145,7 @@ const PostUploader = () => {
               placeholderTextColor={"#A9A9A9"}
               onBlur={onBlur}
               onChangeText={onChange}
+              onChange={(e) => setThumbnailUrl(e.nativeEvent.text)}
               value={value}
             />
             {error && <Text style={styles.errorMessage}>{error.message}</Text>}
