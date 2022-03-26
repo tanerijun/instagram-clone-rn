@@ -53,11 +53,12 @@ const BottomTabs = () => {
       <View style={styles.iconsContainer}>
         {icons.map((icon, index) => (
           <TouchableOpacity
+            key={index}
             onPress={() => {
               setActive(icon);
             }}
           >
-            <Icon key={index} icon={icon} active={active} />
+            <Icon icon={icon} active={active} />
           </TouchableOpacity>
         ))}
       </View>
