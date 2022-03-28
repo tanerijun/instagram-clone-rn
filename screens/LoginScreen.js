@@ -1,6 +1,7 @@
-import { Image, StyleSheet, SafeAreaView, View } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
 import Constants from "expo-constants";
 import Logo from "../components/login/Logo";
+import LoginForm from "../components/login/LoginForm";
 
 const styles = StyleSheet.create({
   container: {
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
 const LoginScreen = () => (
   <SafeAreaView style={styles.container}>
     <Logo />
+    <LoginForm />
   </SafeAreaView>
 );
 
