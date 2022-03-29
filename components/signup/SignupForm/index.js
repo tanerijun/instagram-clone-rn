@@ -20,12 +20,8 @@ const styles = StyleSheet.create({
   },
 
   buttonContainer: {
+    marginTop: 30,
     marginBottom: 50,
-  },
-
-  forgotPasswordContainer: {
-    alignItems: "flex-end",
-    marginBottom: 30,
   },
 
   linkText: {
@@ -45,11 +41,14 @@ const styles = StyleSheet.create({
 const emailValidationRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-const LoginForm = () => {
+const usernameValidationRegex = /^[a-zA-Z].*/; // Username must start with an alphabet
+
+const SignupForm = () => {
   // React Hook Form
   const {
     handleSubmit,
     control,
+    watch,
     formState: { isValid },
   } = useForm({ mode: "onChange", reValidateMode: "onChange" });
 
@@ -91,6 +90,42 @@ const LoginForm = () => {
       />
 
       <Controller
+        name="username"
+        control={control}
+        rules={{
+          required: "Username must be at least 8 characters",
+          minLength: {
+            value: 3,
+            message: "Username must be at least 8 characters",
+          },
+          validate: (value) =>
+            usernameValidationRegex.test(value) ||
+            "Username must start with an alphabet",
+        }}
+        render={({
+          field: { onChange, onBlur, value },
+          fieldState: { error },
+        }) => (
+          <>
+            <TextInput
+              style={[
+                styles.text,
+                styles.textInput,
+                error ? styles.errorContainer : null,
+              ]}
+              placeholderTextColor={error ? "red" : "#A9A9A9"}
+              placeholder={error ? error.message : "Username"}
+              textContentType={"username"}
+              autoCapitalize={"none"}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              value={value}
+            />
+          </>
+        )}
+      />
+
+      <Controller
         name="password"
         control={control}
         rules={{
@@ -123,13 +158,39 @@ const LoginForm = () => {
         )}
       />
 
-      <View style={styles.forgotPasswordContainer}>
-        <Text style={styles.linkText}>Forgot password?</Text>
-      </View>
+      <Controller
+        name="confirmPassword"
+        control={control}
+        rules={{
+          required: "Password doesn't match",
+          validate: (value) => value === watch("password"),
+        }}
+        render={({
+          field: { onChange, onBlur, value },
+          fieldState: { error },
+        }) => (
+          <>
+            <TextInput
+              style={[
+                styles.text,
+                styles.textInput,
+                error ? styles.errorContainer : null,
+              ]}
+              placeholderTextColor={error ? "red" : "#A9A9A9"}
+              placeholder={error ? error.message : "Confirm password"}
+              textContentType={"password"}
+              secureTextEntry={true}
+              onChangeText={onChange}
+              onBlur={onBlur}
+              value={value}
+            />
+          </>
+        )}
+      />
 
       <View style={styles.buttonContainer}>
         <Button
-          title="Log In"
+          title="Sign Up"
           onPress={handleSubmit(onSubmit)}
           disabled={!isValid}
         />
@@ -137,11 +198,11 @@ const LoginForm = () => {
 
       <View style={styles.signUpContainer}>
         <Text style={styles.text}>
-          Don't have an account? <Text style={styles.linkText}>Sign Up</Text>
+          Already have an account? <Text style={styles.linkText}>Login</Text>
         </Text>
       </View>
     </View>
   );
 };
 
-export default LoginForm;
+export default SignupForm;
