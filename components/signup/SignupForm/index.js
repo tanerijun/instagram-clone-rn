@@ -43,7 +43,7 @@ const emailValidationRegex =
 
 const usernameValidationRegex = /^[a-zA-Z].*/; // Username must start with an alphabet
 
-const SignupForm = () => {
+const SignupForm = ({ navigation }) => {
   // React Hook Form
   const {
     handleSubmit,
@@ -198,7 +198,10 @@ const SignupForm = () => {
 
       <View style={styles.signUpContainer}>
         <Text style={styles.text}>
-          Already have an account? <Text style={styles.linkText}>Login</Text>
+          Already have an account?{" "}
+          <Text style={styles.linkText} onPress={() => navigation.goBack()}>
+            Login
+          </Text>
         </Text>
       </View>
     </View>

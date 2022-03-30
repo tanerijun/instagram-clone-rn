@@ -20,7 +20,7 @@ const screenOptions = {
 const SignedInStack = () => (
   <NavigationContainer theme={{ colors: { background: "#000" } }}>
     <Stack.Navigator
-      initialRouteName="SignupScreen"
+      initialRouteName="LoginScreen"
       screenOptions={screenOptions}
     >
       <Stack.Screen name="HomeScreen" component={HomeScreen} />

@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const SignupScreen = () => (
+const SignupScreen = ({ navigation }) => (
   <SafeAreaView style={styles.container}>
     <Logo />
-    <SignupForm />
+    <SignupForm navigation={navigation} />
   </SafeAreaView>
 );
 

@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import firebaseApp from "../../../firebase";
 
 const styles = StyleSheet.create({
   container: {
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
 const emailValidationRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
-const LoginForm = () => {
+const LoginForm = ({ navigation }) => {
   // React Hook Form
   const {
     handleSubmit,
@@ -137,7 +138,13 @@ const LoginForm = () => {
 
       <View style={styles.signUpContainer}>
         <Text style={styles.text}>
-          Don't have an account? <Text style={styles.linkText}>Sign Up</Text>
+          Don't have an account?{" "}
+          <Text
+            style={styles.linkText}
+            onPress={() => navigation.push("SignupScreen")}
+          >
+            Sign Up
+          </Text>
         </Text>
       </View>
     </View>

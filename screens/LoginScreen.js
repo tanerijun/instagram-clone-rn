@@ -11,10 +11,10 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = () => (
+const LoginScreen = ({ navigation }) => (
   <SafeAreaView style={styles.container}>
     <Logo />
-    <LoginForm />
+    <LoginForm navigation={navigation} />
   </SafeAreaView>
 );
 
