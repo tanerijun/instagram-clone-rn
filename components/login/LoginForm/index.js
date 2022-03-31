@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import firebaseApp from "../../../firebase";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -50,7 +50,6 @@ const emailValidationRegex =
 const LoginForm = ({ navigation }) => {
   const onLogin = async (email, password) => {
     try {
-      const auth = getAuth(firebaseApp);
       const cred = await signInWithEmailAndPassword(auth, email, password);
       console.log("User logged in, ", cred.user);
     } catch (error) {

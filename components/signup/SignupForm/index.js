@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import firebaseApp from "../../../firebase";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -48,7 +48,6 @@ const usernameValidationRegex = /^[a-zA-Z].*/; // Username must start with an al
 const SignupForm = ({ navigation }) => {
   const onSignup = async (email, password) => {
     try {
-      const auth = getAuth(firebaseApp);
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       console.log("User signed up, ", cred.user);
     } catch (error) {
