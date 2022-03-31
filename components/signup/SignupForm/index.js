@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
-import { auth } from "../../../firebase";
+import { auth, db } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc } from "firebase/firestore";
+import { getRandomProfilePicture } from "../../../helper";
 
 const styles = StyleSheet.create({
   container: {
@@ -46,10 +48,19 @@ const emailValidationRegex =
 const usernameValidationRegex = /^[a-zA-Z].*/; // Username must start with an alphabet
 
 const SignupForm = ({ navigation }) => {
-  const onSignup = async (email, password) => {
+  const onSignup = async (email, password, username) => {
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       console.log("User signed up, ", cred.user);
+
+      // add user to database
+      const colRef = collection(db, "users");
+      await addDoc(colRef, {
+        uid: cred.user.uid,
+        username: username,
+        email: cred.user.email,
+        profile_picture: await getRandomProfilePicture(),
+      });
     } catch (error) {
       Alert.alert(error.message);
     }
@@ -83,7 +94,7 @@ const SignupForm = ({ navigation }) => {
     });
 
   const onSubmit = async (data) => {
-    onSignup(data.email, data.password);
+    onSignup(data.email, data.password, data.username);
     await AsyncAlert("Success!", "You are now registered");
     navigation.goBack();
   };
