@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { Text, View, StyleSheet, TextInput, Button } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
+import firebaseApp from "../../../firebase";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -44,6 +46,16 @@ const emailValidationRegex =
 const usernameValidationRegex = /^[a-zA-Z].*/; // Username must start with an alphabet
 
 const SignupForm = ({ navigation }) => {
+  const onSignup = async (email, password) => {
+    try {
+      const auth = getAuth(firebaseApp);
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      console.log("User signed up, ", cred.user);
+    } catch (error) {
+      Alert.alert(error.message);
+    }
+  };
+
   // React Hook Form
   const {
     handleSubmit,
@@ -52,8 +64,29 @@ const SignupForm = ({ navigation }) => {
     formState: { isValid },
   } = useForm({ mode: "onChange", reValidateMode: "onChange" });
 
-  const onSubmit = (data) => {
-    console.log(data);
+  // Used in onSubmit function
+  // AsyncAlert will make it so that the function pause until the user press "OK" on the alert
+  const AsyncAlert = (title, msg) =>
+    new Promise((resolve) => {
+      Alert.alert(
+        title,
+        msg,
+        [
+          {
+            text: "ok",
+            onPress: () => {
+              resolve("YES");
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+    });
+
+  const onSubmit = async (data) => {
+    onSignup(data.email, data.password);
+    await AsyncAlert("Success!", "You are now registered");
+    navigation.goBack();
   };
 
   return (

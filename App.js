@@ -4,9 +4,7 @@ import SignedInStack from "./navigation";
 
 // Suppress Async storage warning (imported by Expo)
 import { LogBox } from "react-native";
-LogBox.ignoreLogs([
-  /^Warning: Async Storage has been extracted from react-native core/,
-]);
+LogBox.ignoreLogs([/^AsyncStorage has been extracted from react-native core/]);
 
 export default function App() {
   return (
