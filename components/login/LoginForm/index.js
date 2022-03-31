@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import firebaseApp from "../../../firebase";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 const styles = StyleSheet.create({
   container: {
@@ -47,6 +48,16 @@ const emailValidationRegex =
   /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 const LoginForm = ({ navigation }) => {
+  const onLogin = async (email, password) => {
+    try {
+      const auth = getAuth(firebaseApp);
+      const cred = await signInWithEmailAndPassword(auth, email, password);
+      console.log("User logged in, ", cred.user);
+    } catch (error) {
+      Alert.alert("Error", "Invalid email or password");
+    }
+  };
+
   // React Hook Form
   const {
     handleSubmit,
@@ -55,7 +66,7 @@ const LoginForm = ({ navigation }) => {
   } = useForm({ mode: "onChange", reValidateMode: "onChange" });
 
   const onSubmit = (data) => {
-    console.log(data);
+    onLogin(data.email, data.password);
   };
 
   return (
