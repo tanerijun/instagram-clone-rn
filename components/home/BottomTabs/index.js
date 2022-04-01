@@ -87,6 +87,7 @@ const BottomTabs = ({ navigation }) => {
         {/* Profile */}
         <TouchableOpacity
           onPress={() => {
+            navigation.push("ProfileScreen");
             setActive(icons[4]);
           }}
         >
