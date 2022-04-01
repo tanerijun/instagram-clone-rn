@@ -158,7 +158,7 @@ const PostFooter = ({ post }) => {
           <Icon source={faBookmark} />
         </View>
       </View>
-      <Likes likes={post.likes} />
+      <Likes likes={post.likes_by_users.length} />
       <Caption user={post.user} caption={post.caption} />
       <ViewComments comments={post.comments} />
     </View>

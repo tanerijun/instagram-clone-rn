@@ -106,9 +106,9 @@ const PostUploader = ({ navigation }) => {
         user: currentLoggedInUser.username,
         profile_picture: currentLoggedInUser.profilePicture,
         uid: auth.currentUser.uid,
+        email: auth.currentUser.email,
         caption: caption,
         createdAt: serverTimestamp(),
-        likes: 0,
         likes_by_users: [],
         comments: [],
       });
