@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import { db } from "../firebase";
@@ -10,7 +10,7 @@ import Separator from "../components/home/Separator";
 import Post from "../components/home/Post";
 import BottomTabs from "../components/home/BottomTabs";
 
-// Data
+// Mockup data
 import POSTS from "../data/posts";
 
 const styles = StyleSheet.create({
@@ -22,10 +22,12 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = ({ navigation }) => {
+  const [posts, setPosts] = useState([]);
+
   useEffect(() => {
-    const query = collectionGroup(db, "posts");
-    onSnapshot(query, (snapshot) =>
-      console.log(snapshot.docs.map((doc) => doc.data()))
+    const q = collectionGroup(db, "posts");
+    onSnapshot(q, (snapshot) =>
+      setPosts(snapshot.docs.map((doc) => doc.data()))
     );
   }, []);
 
@@ -35,8 +37,8 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Stories />
         <Separator />
-        {POSTS.map((post) => (
-          <Post post={post} key={post.id} />
+        {posts.map((post, index) => (
+          <Post post={post} key={index} />
         ))}
       </ScrollView>
       <BottomTabs navigation={navigation} />

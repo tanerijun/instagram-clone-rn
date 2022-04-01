@@ -1,7 +1,17 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button, Image, StyleSheet, Text, TextInput, View } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import Separator from "../../home/Separator";
+import { db, auth } from "../../../firebase";
+import {
+  collection,
+  onSnapshot,
+  query,
+  where,
+  doc,
+  addDoc,
+  serverTimestamp,
+} from "firebase/firestore";
 
 import placeholderImage from "../../../assets/icon.png";
 
@@ -63,7 +73,52 @@ const urlValidationRegex = /^(ftp|http|https):\/\/[^ "]+$/;
 
 const PostUploader = ({ navigation }) => {
   const [thumbnailUrl, setThumbnailUrl] = useState("");
+  const [currentLoggedInUser, setCurrentLoggedInUser] = useState(null);
 
+  const getUsername = () => {
+    const user = auth.currentUser;
+    colRef = collection(db, "users");
+    const q = query(colRef, where("uid", "==", user.uid));
+    const unsubscribe = onSnapshot(q, (snapshot) =>
+      snapshot.docs.map((doc) =>
+        setCurrentLoggedInUser({
+          username: doc.data().username,
+          profilePicture: doc.data().profile_picture,
+        })
+      )
+    );
+
+    return unsubscribe;
+  };
+
+  useEffect(() => {
+    getUsername();
+  }, []);
+
+  // Upload post to database
+  const uploadPostToFirebase = async (imageUrl, caption) => {
+    try {
+      const colRef = collection(db, "users");
+      const docRef = doc(colRef, auth.currentUser.email);
+      const colRef2 = collection(docRef, "posts");
+      await addDoc(colRef2, {
+        imageUrl: imageUrl,
+        user: currentLoggedInUser.username,
+        profile_picture: currentLoggedInUser.profilePicture,
+        uid: auth.currentUser.uid,
+        caption: caption,
+        createdAt: serverTimestamp(),
+        likes: 0,
+        likes_by_users: [],
+        comments: [],
+      });
+      navigation.goBack(); // Go back to the homescreen after the upload
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  // React Hook Form
   const {
     handleSubmit,
     control,
@@ -74,8 +129,7 @@ const PostUploader = ({ navigation }) => {
   });
 
   const onSubmit = (data) => {
-    console.log("Form submitted");
-    navigation.goBack();
+    uploadPostToFirebase(data.imageUrl, data.caption);
   };
 
   return (

@@ -89,7 +89,7 @@ const Caption = ({ user, caption }) => {
     <View style={styles.captionContainer}>
       <Text>
         <Text style={[styles.text, styles.boldText]}>
-          {user.toLowerCase() + " "}
+          {user?.toLowerCase() + " "}
         </Text>
 
         {/* render part of the caption with a button to read more if the caption is too long
@@ -120,7 +120,7 @@ const ViewComments = ({ comments }) => {
 
   return (
     <View style={styles.viewCommentsContainer}>
-      {comments.length > 0 ? (
+      {comments?.length > 0 ? (
         <Text style={styles.grayText} onPress={() => setShowComments(true)}>
           View {comments.length > 1 ? "all" : ""} {comments.length + " "}
           {comments.length > 1 ? "comments" : "comment"}

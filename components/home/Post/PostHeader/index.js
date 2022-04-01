@@ -39,7 +39,9 @@ const PostHeader = ({ user, profilePicture }) => {
     <View style={styles.headerContainer}>
       <View style={styles.userInfo}>
         <Image source={{ uri: profilePicture }} style={styles.profilePicture} />
-        <Text style={[styles.text, styles.boldText]}>{user.toLowerCase()}</Text>
+        <Text style={[styles.text, styles.boldText]}>
+          {user?.toLowerCase()}
+        </Text>
       </View>
       <Text style={[styles.text, styles.bigFont]}>⋮</Text>
     </View>
