@@ -8,6 +8,7 @@ What's working:
      - Header
      - Stories
      - Post
+     - Like and unlike
      - Comments
      - Bottom Tabs
   2. New Post Screen
@@ -26,6 +27,9 @@ Used techs:
      - React Navigation
      - Expo Linear Gradient
      - React Native Font Awesome
-  2. Firebase
+  2. Firebase 9
      - User authentication
      - Database
+
+NOTE: You have to configure your Firebase in firebaseConfig.js before you can run the app
+
