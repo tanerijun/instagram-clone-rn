@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
+import { db, auth } from "../../../../firebase";
+import {
+  collection,
+  doc,
+  updateDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
+
 // Assets
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import {
@@ -10,6 +19,7 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
+import { async } from "@firebase/util";
 
 const styles = StyleSheet.create({
   icon: {
@@ -66,8 +76,8 @@ const styles = StyleSheet.create({
 
 const ICON_SIZE = 22;
 
-const Icon = ({ source }) => (
-  <TouchableOpacity>
+const Icon = ({ source, onPress = null }) => (
+  <TouchableOpacity onPress={onPress}>
     <FontAwesomeIcon icon={source} size={ICON_SIZE} style={styles.icon} />
   </TouchableOpacity>
 );
@@ -146,11 +156,37 @@ const Comments = ({ comments }) => (
 );
 
 const PostFooter = ({ post }) => {
+  const [liked, setLiked] = useState(false);
+
+  const handleLike = async () => {
+    try {
+      const currentLikeStatus = !post.likes_by_users.includes(
+        auth.currentUser.email
+      );
+
+      const colRef = collection(db, "users");
+      const docRef = doc(colRef, post.email);
+      const colRef2 = collection(docRef, "posts");
+      const docRef2 = doc(colRef2, post.id);
+
+      await updateDoc(docRef2, {
+        likes_by_users: currentLikeStatus
+          ? arrayUnion(auth.currentUser.email)
+          : arrayRemove(auth.currentUser.email),
+      });
+
+      setLiked(currentLikeStatus);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.iconContainer}>
         <View style={styles.leftIconContainer}>
-          <Icon source={faHeart} />
+          {/* change icon based on like status */}
+          <Icon source={liked ? fasHeart : faHeart} onPress={handleLike} />
           <Icon source={faComment} />
           <Icon source={faPaperPlane} />
         </View>

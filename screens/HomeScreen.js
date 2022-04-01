@@ -27,7 +27,7 @@ const HomeScreen = ({ navigation }) => {
   useEffect(() => {
     const q = collectionGroup(db, "posts");
     onSnapshot(q, (snapshot) =>
-      setPosts(snapshot.docs.map((doc) => doc.data()))
+      setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     );
   }, []);
 
@@ -37,8 +37,8 @@ const HomeScreen = ({ navigation }) => {
       <ScrollView showsVerticalScrollIndicator={false}>
         <Stories />
         <Separator />
-        {posts.map((post, index) => (
-          <Post post={post} key={index} />
+        {posts.map((post) => (
+          <Post post={post} key={post.id} />
         ))}
       </ScrollView>
       <BottomTabs navigation={navigation} />
