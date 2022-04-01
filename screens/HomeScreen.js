@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
 import { db } from "../firebase";
-import { collectionGroup, onSnapshot } from "firebase/firestore";
+import {
+  collectionGroup,
+  onSnapshot,
+  query,
+  orderBy,
+} from "firebase/firestore";
 
 import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
@@ -25,7 +30,8 @@ const HomeScreen = ({ navigation }) => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    const q = collectionGroup(db, "posts");
+    const colRef = collectionGroup(db, "posts");
+    const q = query(colRef, orderBy("createdAt", "desc"));
     onSnapshot(q, (snapshot) =>
       setPosts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     );

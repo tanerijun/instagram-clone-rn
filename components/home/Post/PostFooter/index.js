@@ -19,11 +19,9 @@ import {
   faPaperPlane,
 } from "@fortawesome/free-regular-svg-icons";
 import { faHeart as fasHeart } from "@fortawesome/free-solid-svg-icons";
-import { async } from "@firebase/util";
 
 const styles = StyleSheet.create({
   icon: {
-    color: "#FFF",
     marginRight: 25,
   },
 
@@ -78,7 +76,12 @@ const ICON_SIZE = 22;
 
 const Icon = ({ source, onPress = null }) => (
   <TouchableOpacity onPress={onPress}>
-    <FontAwesomeIcon icon={source} size={ICON_SIZE} style={styles.icon} />
+    <FontAwesomeIcon
+      icon={source}
+      size={ICON_SIZE}
+      style={styles.icon}
+      color={source == fasHeart ? "#FF3250" : "#FFF"}
+    />
   </TouchableOpacity>
 );
 
@@ -164,6 +167,7 @@ const PostFooter = ({ post }) => {
         auth.currentUser.email
       );
 
+      // example path: projects/instagram-clone-rn-7aac5/databases/(default)/documents/users/dummy7@gmail.com/posts/HFvGC16rShu8h1Y5Hq2D
       const colRef = collection(db, "users");
       const docRef = doc(colRef, post.email);
       const colRef2 = collection(docRef, "posts");
