@@ -1,5 +1,8 @@
+import { useEffect } from "react";
 import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import Constants from "expo-constants";
+import { db } from "../firebase";
+import { collectionGroup, onSnapshot } from "firebase/firestore";
 
 import Header from "../components/home/Header";
 import Stories from "../components/home/Stories";
@@ -19,6 +22,13 @@ const styles = StyleSheet.create({
 });
 
 const HomeScreen = ({ navigation }) => {
+  useEffect(() => {
+    const query = collectionGroup(db, "posts");
+    onSnapshot(query, (snapshot) =>
+      console.log(snapshot.docs.map((doc) => doc.data()))
+    );
+  }, []);
+
   return (
     <SafeAreaView style={styles.container}>
       <Header navigation={navigation} />

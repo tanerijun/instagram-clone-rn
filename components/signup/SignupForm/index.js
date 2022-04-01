@@ -3,7 +3,7 @@ import { Text, View, StyleSheet, TextInput, Button, Alert } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import { auth, db } from "../../../firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { getRandomProfilePicture } from "../../../helper";
 
 const styles = StyleSheet.create({
@@ -53,9 +53,8 @@ const SignupForm = ({ navigation }) => {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       console.log("User signed up, ", cred.user);
 
-      // add user to database
-      const colRef = collection(db, "users");
-      await addDoc(colRef, {
+      // add user to database with custom ID
+      await setDoc(doc(db, "users", cred.user.email), {
         uid: cred.user.uid,
         username: username,
         email: cred.user.email,
