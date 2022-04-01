@@ -33,3 +33,18 @@ Used techs:
 
 NOTE: You have to configure your Firebase in firebaseConfig.js before you can run the app
 
+Screenshots:
+![LoginScreen](./screenshots/1.png)
+![LoginScreen](./screenshots/2.png)
+![LoginScreen](./screenshots/3.png)
+![LoginScreen](./screenshots/4.png)
+![LoginScreen](./screenshots/5.png)
+![LoginScreen](./screenshots/6.png)
+![LoginScreen](./screenshots/7.png)
+![LoginScreen](./screenshots/8.png)
+![LoginScreen](./screenshots/9.png)
+![LoginScreen](./screenshots/10.png)
+![LoginScreen](./screenshots/11.png)
+![LoginScreen](./screenshots/12.png)
+![LoginScreen](./screenshots/13.png)
+![LoginScreen](./screenshots/14.png)
