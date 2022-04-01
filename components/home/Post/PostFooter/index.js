@@ -159,7 +159,9 @@ const Comments = ({ comments }) => (
 );
 
 const PostFooter = ({ post }) => {
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState(
+    post.likes_by_users.includes(auth.currentUser.email)
+  );
 
   const handleLike = async () => {
     try {
