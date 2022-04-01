@@ -16,7 +16,6 @@ const ProfileScreen = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <Logout />
-      <BottomTabs navigation={navigation} initialIcon={"profile"} />
     </SafeAreaView>
   );
 };
