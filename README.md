@@ -34,7 +34,7 @@ Used techs:
 NOTE: You have to configure your Firebase in firebaseConfig.js before you can run the app
 
 Screenshots:
-![LoginScreen](./screenshots/1.png)
+![LoginScreen](./screenshots/1.png | width = 400)
 ![LoginScreen](./screenshots/2.png)
 ![LoginScreen](./screenshots/3.png)
 ![LoginScreen](./screenshots/4.png)
