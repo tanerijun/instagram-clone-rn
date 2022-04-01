@@ -1,5 +1,11 @@
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  TextInput,
+} from "react-native";
 
 import { db, auth } from "../../../../firebase";
 import {
@@ -9,6 +15,8 @@ import {
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
+
+import { useForm, Controller } from "react-hook-form";
 
 // Assets
 import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
@@ -69,6 +77,13 @@ const styles = StyleSheet.create({
 
   commentContainer: {
     marginTop: 5,
+  },
+
+  createCommentContainer: {
+    borderWidth: 1,
+    borderRadius: 4,
+    borderColor: "#323232",
+    padding: 3,
   },
 });
 
@@ -158,6 +173,30 @@ const Comments = ({ comments }) => (
   </>
 );
 
+const CreateComments = () => {
+  // React Hook Form
+  const { handleSubmit, control } = useForm();
+
+  return (
+    <View style={styles.createCommentContainer}>
+      <Controller
+        name="comment"
+        control={control}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <TextInput
+            style={styles.text}
+            placeholderTextColor={"#A9A9A9"}
+            placeholder={"Write a comment..."}
+            onChangeText={onChange}
+            onBlur={onBlur}
+            value={value}
+          />
+        )}
+      />
+    </View>
+  );
+};
+
 const PostFooter = ({ post }) => {
   const [liked, setLiked] = useState(
     post.likes_by_users.includes(auth.currentUser.email)
@@ -203,6 +242,7 @@ const PostFooter = ({ post }) => {
       <Likes likes={post.likes_by_users.length} />
       <Caption user={post.user} caption={post.caption} />
       <ViewComments comments={post.comments} />
+      <CreateComments />
     </View>
   );
 };
