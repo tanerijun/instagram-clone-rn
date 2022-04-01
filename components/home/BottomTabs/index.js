@@ -42,7 +42,7 @@ const Icon = ({ icon, active }) => (
   </View>
 );
 
-const BottomTabs = () => {
+const BottomTabs = ({ navigation }) => {
   const [active, setActive] = useState(faHouse);
 
   const icons = [faHouse, faMagnifyingGlass, faSquarePlus, faStore, faUser];
@@ -51,16 +51,47 @@ const BottomTabs = () => {
     <>
       <Separator />
       <View style={styles.iconsContainer}>
-        {icons.map((icon, index) => (
-          <TouchableOpacity
-            key={index}
-            onPress={() => {
-              setActive(icon);
-            }}
-          >
-            <Icon icon={icon} active={active} />
-          </TouchableOpacity>
-        ))}
+        {/* Home */}
+        <TouchableOpacity
+          onPress={() => {
+            setActive(icons[0]);
+          }}
+        >
+          <Icon icon={icons[0]} active={active} />
+        </TouchableOpacity>
+        {/* Search */}
+        <TouchableOpacity
+          onPress={() => {
+            setActive(icons[1]);
+          }}
+        >
+          <Icon icon={icons[1]} active={active} />
+        </TouchableOpacity>
+        {/* Post */}
+        <TouchableOpacity
+          onPress={() => {
+            setActive(icons[2]);
+            navigation.push("NewPostScreen");
+          }}
+        >
+          <Icon icon={icons[2]} active={active} />
+        </TouchableOpacity>
+        {/* Store */}
+        <TouchableOpacity
+          onPress={() => {
+            setActive(icons[3]);
+          }}
+        >
+          <Icon icon={icons[3]} active={active} />
+        </TouchableOpacity>
+        {/* Profile */}
+        <TouchableOpacity
+          onPress={() => {
+            setActive(icons[4]);
+          }}
+        >
+          <Icon icon={icons[4]} active={active} />
+        </TouchableOpacity>
       </View>
     </>
   );
