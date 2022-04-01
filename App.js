@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 
-import SignedInStack from "./navigation";
+import AuthNavigation from "./components/AuthNavigation";
 
 // Suppress Async storage warning (imported by Expo)
 import { LogBox } from "react-native";
@@ -9,7 +9,7 @@ LogBox.ignoreLogs([/^AsyncStorage has been extracted from react-native core/]);
 export default function App() {
   return (
     <>
-      <SignedInStack />
+      <AuthNavigation />
       <StatusBar style="light" />
     </>
   );
